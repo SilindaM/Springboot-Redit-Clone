@@ -1,13 +1,17 @@
 package com.example.demo.Model;
 
 import java.util.Arrays;
+
+import com.example.demo.exceptions.SpringRedditException;
 public enum VoteType {
 
-	UPVOTE(1),DOWNVOTE(-1),
-	;
+	UPVOTE(1),DOWNVOTE(-1),;
 	private int direction;
 	
-	  public static VoteType lookup(Integer direction) {
+	  VoteType(int direction) {
+	}
+
+	public static VoteType lookup(Integer direction) {
 	        return Arrays.stream(VoteType.values())
 	                .filter(value -> value.getDirection().equals(direction))
 	                .findAny()

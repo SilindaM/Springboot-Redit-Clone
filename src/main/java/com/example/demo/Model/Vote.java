@@ -22,7 +22,7 @@ public class Vote {
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Long voteId;
-	private VotetType type;
+	private VoteType type;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="postId",referencedColumnName = "postId")
 	private Post post;
