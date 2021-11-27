@@ -5,10 +5,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,14 +21,15 @@ import com.example.demo.Model.User;
 import com.example.demo.Model.VerificationToken;
 import com.example.demo.Repository.UserRepository;
 import com.example.demo.Repository.VerificationTokenRepository;
+import com.example.demo.Security.JwtProvider;
 import com.example.demo.exceptions.SpringRedditException;
 
-import Security.JwtProvider;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 @AllArgsConstructor
-@Transactional
 public class AuthService {
 
 	//we dont use @Autowired for other reasons
@@ -41,6 +40,7 @@ public class AuthService {
 	private final AuthenticationManager authenticationManager;
 	private final JwtProvider jwtProvider;
 	
+	@Transactional
 	public void signup(RegisterRequest registerRequest) {
 		User user=new User();
 		user.setUsername(registerRequest.getUsername());
